@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <compositeConfiguration>
+          <compositeBuild compositeDefinitionSource="SCRIPT">
+            <builds>
+              <build path="$PROJECT_DIR$/auto-benchmark-plugin" name="auto-benchmark-plugin">
+                <projects>
+                  <project path="$PROJECT_DIR$/auto-benchmark-plugin" />
+                  <project path="$PROJECT_DIR$/auto-benchmark-plugin/plugin" />
+                </projects>
+              </build>
+            </builds>
+          </compositeBuild>
+        </compositeConfiguration>
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/auto-benchmark-plugin" />
+            <option value="$PROJECT_DIR$/auto-benchmark-plugin/plugin" />
+            <option value="$PROJECT_DIR$/sample" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
