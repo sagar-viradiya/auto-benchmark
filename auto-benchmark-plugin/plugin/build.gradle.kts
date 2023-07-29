@@ -10,8 +10,8 @@ plugins {
 dependencies {
     compileOnly(gradleApi())
     compileOnly(kotlin("stdlib"))
-    compileOnly("com.android.tools.build:gradle:7.4.1")
-    compileOnly("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0")
+    compileOnly("com.android.tools.build:gradle:8.0.0")
+    compileOnly("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.10")
     implementation("com.osacky.flank.gradle:fladle:0.17.4")
     testImplementation(platform("org.junit:junit-bom:5.9.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
