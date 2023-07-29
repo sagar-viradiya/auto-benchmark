@@ -14,4 +14,6 @@ dependencyResolutionManagement {
 }
 rootProject.name = "auto-benchmark"
 include(":sample")
+include(":benchmark")
+include(":baseline-profile")
 includeBuild("auto-benchmark-plugin")
