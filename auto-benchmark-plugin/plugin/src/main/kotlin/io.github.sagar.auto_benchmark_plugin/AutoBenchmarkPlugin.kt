@@ -40,7 +40,7 @@ class AutoBenchmarkPlugin : Plugin<Project> {
                         mapOf("model" to "Pixel2", "version" to "33")
                     )
                 )
-
+                projectId.set("auto-benchmark-3e0c")
                 variant.set("benchmark")
                 dependOnAssemble.set(true)
             }
