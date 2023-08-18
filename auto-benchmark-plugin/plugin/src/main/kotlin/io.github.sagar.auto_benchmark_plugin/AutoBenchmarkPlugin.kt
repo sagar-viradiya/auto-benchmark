@@ -4,58 +4,74 @@ import com.android.build.api.variant.AndroidComponentsExtension
 import com.osacky.flank.gradle.FlankGradleExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.file.Directory
-import org.gradle.api.file.FileTree
-import org.gradle.api.file.RegularFile
-import org.gradle.api.provider.Provider
 
 class AutoBenchmarkPlugin : Plugin<Project> {
+    companion object {
+        private const val TASK_NAME = "runAndVerifyMacroBenchmark"
+        private const val FLADLE_CONFIG_NAME = "autoBenchmark"
+        private const val LOCAL_RESULT_DIR = "benchmark_result"
+        private const val FLADLE_TASK_NAME = "runFlankAutoBenchmark"
+        private const val ADDITIONAL_TEST_OUTPUT_DIR = "/sdcard/Download/"
+        private const val ENV_ADDITIONAL_TEST_OUTPUT_KEY = "additionalTestOutputDir"
+        private const val ENV_ADDITIONAL_NO_ISOLATION_KEY = "no-isolated-storage"
+        private const val ENV_ADDITIONAL_NO_ISOLATION_VALUE = "true"
+        private const val PLUGIN_APPLY_ERROR_MESSAGE = "This plugin is only applicable for Android modules"
+    }
 
-    private lateinit var flankCredentialsDir: Provider<Directory>
-    private lateinit var flankCredentials: Provider<RegularFile>
-    private lateinit var rootDir: String
-    private lateinit var rootFileTree: FileTree
-
-    override fun apply(target: Project) {
-        target.pluginManager.apply("com.osacky.fladle")
+    override fun apply(project: Project) {
+        project.pluginManager.apply("com.osacky.fladle")
         runCatching {
-            target.extensions.getByType(AndroidComponentsExtension::class.java)
-        }.getOrElse { error("This plugin is only applicable for Android modules") }
+            project.extensions.getByType(AndroidComponentsExtension::class.java)
+        }.getOrElse { error(PLUGIN_APPLY_ERROR_MESSAGE) }
 
-        val extension = AutoBenchmarkExtension.create(target)
+        val extension = AutoBenchmarkExtension.create(project)
 
-        target.extensions.configure(FlankGradleExtension::class.java) {
-            with(this) {
-                defaultClassTestTime.set(30.0)
-                defaultTestTime.set(30.0)
-                flakyTestAttempts.set(1)
-                flankVersion.set("23.06.0")
-                localResultsDir.set("${target.buildDir}/reports/flank/")
-                performanceMetrics.set(false)
-                shardTime.set(150)
-                testTimeout.set("6m")
-                useOrchestrator.set(true)
-                devices.set(
-                    listOf(
-                        mapOf("model" to "Pixel2", "version" to "33")
+        configureFladle(project, extension)
+        setupMacroBenchmarkVerificationTask(project, extension)
+    }
+
+    private fun configureFladle(project: Project, extension: AutoBenchmarkExtension) {
+        project.extensions.configure(FlankGradleExtension::class.java) {
+            configs.register(FLADLE_CONFIG_NAME) {
+                with(this@configure) {
+                    flakyTestAttempts.set(1)
+                    localResultsDir.set(LOCAL_RESULT_DIR)
+                    performanceMetrics.set(false)
+                    disableSharding.set(true)
+                    devices.set(
+                        listOf(
+                            extension.physicalDevices.get()
+                        )
                     )
-                )
-                projectId.set("auto-benchmark-3e0c")
-                variant.set("benchmark")
-                dependOnAssemble.set(true)
-            }
+                    projectId.set(extension.projectId.get())
+                }
 
-            configs.register("autoBenchmark") {
                 apply {
-                    filesToDownload.set(listOf(".*/sdcard/screenshots/.*"))
-                    debugApk.set(extension.appApkFilePath)
-                    instrumentationApk.set(extension.benchmarkApkFilePath)
+                    filesToDownload.set(listOf(".*$ADDITIONAL_TEST_OUTPUT_DIR.*"))
+                    directoriesToPull.set(listOf("$ADDITIONAL_TEST_OUTPUT_DIR"))
+                    debugApk.set(project.provider { "${project.rootDir.path}${extension.appApkFilePath.get()}" })
+                    instrumentationApk.set(project.provider {
+                        "${project.rootDir.path}${extension.benchmarkApkFilePath.get()}"
+                    })
+                    environmentVariables.set(
+                        mapOf(
+                            ENV_ADDITIONAL_TEST_OUTPUT_KEY to ADDITIONAL_TEST_OUTPUT_DIR,
+                            ENV_ADDITIONAL_NO_ISOLATION_KEY to ENV_ADDITIONAL_NO_ISOLATION_VALUE
+                        )
+                    )
                 }
             }
         }
+    }
 
-        target.tasks.register("autoBenchmark") {
-            dependsOn("runFlankAutoBenchmark")
+    private fun setupMacroBenchmarkVerificationTask(project: Project, extension: AutoBenchmarkExtension) {
+        project.tasks.register(
+            TASK_NAME,
+            BenchmarkJsonParserTask::class.java
+        ) {
+            buildDirectory.set(project.buildDir)
+            tolerancePercentage.set(extension.tolerancePercentage)
+            dependsOn(FLADLE_TASK_NAME)
         }
     }
 }

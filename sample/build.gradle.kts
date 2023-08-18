@@ -69,3 +69,13 @@ dependencies {
 
     baselineProfile(project(":baseline-profile"))
 }
+
+autoBenchmark {
+    appApkFilePath.set("/sample/build/outputs/apk/benchmark/sample-benchmark.apk")
+    benchmarkApkFilePath.set("/benchmark/build/outputs/apk/benchmark/benchmark-benchmark.apk")
+    projectId.set("auto-benchmark-3e0cf")
+    physicalDevices.set(mapOf(
+        "model" to "redfin", "version" to "30"
+    ))
+    tolerancePercentage.set(10f)
+}
