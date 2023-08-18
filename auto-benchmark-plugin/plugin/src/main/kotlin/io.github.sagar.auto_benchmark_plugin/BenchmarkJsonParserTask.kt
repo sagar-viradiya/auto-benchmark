@@ -41,7 +41,7 @@ abstract class BenchmarkJsonParserTask : DefaultTask() {
         }
 
         if (noCompilationMedian <= baselineProfileMedian) {
-            println("Negative improvements : No compilation is better than baseline profile based compilation")
+            throw GradleException("Negative improvements : No compilation mode is better than baseline profile based compilation")
         }
 
         println("No compilation median : $noCompilationMedian")
