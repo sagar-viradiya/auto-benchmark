@@ -336,6 +336,7 @@ HSPLandroidx/appcompat/widget/ForwardingListener;-><init>(Landroid/view/View;)V
 Landroidx/appcompat/widget/LinearLayoutCompat;
 HSPLandroidx/appcompat/widget/LinearLayoutCompat;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
 HSPLandroidx/appcompat/widget/LinearLayoutCompat;->getVirtualChildCount()I
+HSPLandroidx/appcompat/widget/LinearLayoutCompat;->onInitializeAccessibilityEvent(Landroid/view/accessibility/AccessibilityEvent;)V
 HSPLandroidx/appcompat/widget/LinearLayoutCompat;->onLayout(ZIIII)V
 HSPLandroidx/appcompat/widget/LinearLayoutCompat;->onMeasure(II)V
 HSPLandroidx/appcompat/widget/LinearLayoutCompat;->setBaselineAligned(Z)V
@@ -2227,6 +2228,7 @@ Landroidx/compose/ui/text/platform/EmojiCompatStatus;
 HSPLandroidx/compose/ui/text/platform/EmojiCompatStatus;-><clinit>()V
 Landroidx/compose/ui/text/platform/ImmutableBool;
 HSPLandroidx/compose/ui/text/platform/ImmutableBool;-><init>(Z)V
+HSPLandroidx/compose/ui/text/platform/ImmutableBool;->getValue()Ljava/lang/Object;
 Landroidx/compose/ui/text/platform/extensions/LocaleListHelperMethods;
 HSPLandroidx/compose/ui/text/platform/extensions/LocaleListHelperMethods;-><clinit>()V
 HSPLandroidx/compose/ui/text/platform/extensions/LocaleListHelperMethods;-><init>()V
@@ -2448,6 +2450,10 @@ Landroidx/core/view/ViewCompat$Api29Impl;
 HSPLandroidx/core/view/ViewCompat$Api29Impl;->saveAttributeDataForStyleable(Landroid/view/View;Landroid/content/Context;[ILandroid/util/AttributeSet;Landroid/content/res/TypedArray;II)V
 Landroidx/core/view/ViewCompat$Api30Impl$$ExternalSyntheticApiModelOutline0;
 HSPLandroidx/core/view/ViewCompat$Api30Impl$$ExternalSyntheticApiModelOutline0;->m()Landroid/view/WindowInsets;
+Landroidx/core/view/ViewConfigurationCompat;
+HSPLandroidx/core/view/ViewConfigurationCompat;-><clinit>()V
+Landroidx/core/view/ViewConfigurationCompat$Api28Impl;
+HSPLandroidx/core/view/ViewConfigurationCompat$Api28Impl;->shouldShowMenuShortcutsWhenKeyboardPresent(Landroid/view/ViewConfiguration;)Z
 Landroidx/core/view/ViewKt$ancestors$1;
 HSPLandroidx/core/view/ViewKt$ancestors$1;-><clinit>()V
 HSPLandroidx/core/view/ViewKt$ancestors$1;-><init>()V
@@ -2842,6 +2848,7 @@ HSPLandroidx/transition/FragmentTransitionSupport$1;-><init>()V
 Landroidx/transition/Transition$3;
 HSPLandroidx/transition/Transition$3;-><init>(ILjava/lang/Object;)V
 Landroidx/transition/TransitionUtils$$ExternalSyntheticApiModelOutline0;
+HSPLandroidx/transition/TransitionUtils$$ExternalSyntheticApiModelOutline0;->m(Landroid/view/ViewConfiguration;)Z
 HSPLandroidx/transition/TransitionUtils$$ExternalSyntheticApiModelOutline0;->m(Landroid/view/WindowInsets;)Landroid/view/WindowInsets;
 Landroidx/vectordrawable/graphics/drawable/VectorDrawableCommon;
 Landroidx/vectordrawable/graphics/drawable/VectorDrawableCompat;

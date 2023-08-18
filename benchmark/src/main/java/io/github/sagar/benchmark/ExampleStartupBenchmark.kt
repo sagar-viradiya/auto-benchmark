@@ -1,5 +1,6 @@
 package io.github.sagar.benchmark
 
+import androidx.benchmark.macro.BaselineProfileMode
 import androidx.benchmark.macro.CompilationMode
 import androidx.benchmark.macro.StartupMode
 import androidx.benchmark.macro.StartupTimingMetric
@@ -30,7 +31,7 @@ class ExampleStartupBenchmark {
     fun startupNoCompilation() = startup(CompilationMode.None())
 
     @Test
-    fun startupBaselineProfile() = startup(CompilationMode.Partial())
+    fun startupBaselineProfile() = startup(CompilationMode.Partial(BaselineProfileMode.Require))
 
     @Test
     fun startupFullCompilation() = startup(CompilationMode.Full())
