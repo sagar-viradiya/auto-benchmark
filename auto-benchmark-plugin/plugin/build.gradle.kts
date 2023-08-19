@@ -61,9 +61,6 @@ tasks.test {
 gradlePlugin {
     website.set(property("WEBSITE").toString())
     vcsUrl.set(property("VCS_URL").toString())
-}
-
-gradlePlugin {
     plugins {
         create(property("ID").toString()) {
             id = property("ID").toString()
@@ -71,6 +68,7 @@ gradlePlugin {
             version = property("VERSION").toString()
             description = property("DESCRIPTION").toString()
             displayName = property("DISPLAY_NAME").toString()
+            tags.set(listOf("macro-benchmark", "android", "baseline profile"))
         }
     }
 }
