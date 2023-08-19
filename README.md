@@ -1,7 +1,10 @@
 # Autobenchmark
 
-A Gradle plugin to automate macro-benchmark on baseline profile. Run your macro-benchmark tests for profile verification on Firbase test lab and verify them. 
-With this plugin, you can automate macro-benchmark for baseline profile on CI.
+A Gradle plugin to automate macro-benchmark on baseline profile. 
+Run your macro-benchmark tests for profile verification on Firbase test lab and verify benchmark result JSON.
+With this plugin it is possible to integrate baseline profile verification in your CI pipeline to fully automate baseline profile. 
+
+For more information on benchmarking baseline profile visit official [Android guide](https://developer.android.com/topic/performance/baselineprofiles/measure-baselineprofile).
 
 ## Applying plugin
 
@@ -41,7 +44,7 @@ Following are the mandatory parameters that you need to configure.
 
 ```kotlin
 autoBenchmark {
-    // A file path to app apk with baseline profile under benchmark
+    // A file path to app apk with baseline profile
     appApkFilePath.set("/sample/build/outputs/apk/benchmark/sample-benchmark.apk")
     // A file path to benchmark apk
     benchmarkApkFilePath.set("/benchmark/build/outputs/apk/benchmark/benchmark-benchmark.apk")
@@ -86,7 +89,7 @@ echo "$GCLOUD_KEY" | base64 --decode > "$GCLOUD_DIR/application_default_credenti
 
 For more info refer [this](https://flank.github.io/flank/#authenticate-with-a-service-account) flank guide for authentication as this plugin internally uses Fladle and Flank
 
-## 📈 Running baseline profile verification
+## 📈 Running benchmark tests and baseline profile verification
 
 To run benchmark and verify result run following gradle task.
 
@@ -97,6 +100,10 @@ To run benchmark and verify result run following gradle task.
 First, this will run all benchmark tests on Firebase test lab, and it will download benchmark result JSON from G-Cloud.
 This JSON file will be analysed next to compare 'No compilation median startup time' with 'baseline profile median startup time'.
 If the improvement percentage is below provided `tolerancePercentage` then gradle task will fail.
+
+For example, if no compilation median startup is 203 ms and baseline profile median startup
+is 180 ms then startup time is improved by ~11%. If the provided tolerance percentage is 
+10 then task will successfully complete. 
 
 Task will also print improvement percentage, no compilation startup time median, and baseline profile startup time median.
 
