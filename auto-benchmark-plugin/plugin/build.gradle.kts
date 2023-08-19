@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -30,6 +32,11 @@ tasks.withType<KotlinCompile> {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+gradlePlugin {
+    website.set(property("WEBSITE").toString())
+    vcsUrl.set(property("VCS_URL").toString())
 }
 
 gradlePlugin {

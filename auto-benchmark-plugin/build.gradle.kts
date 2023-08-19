@@ -4,6 +4,14 @@ plugins {
 }
 
 allprojects {
-    group = "io.github.sagar"
-    version = "1.0-SNAPSHOT"
+    group = property("GROUP").toString()
+    version = property("VERSION").toString()
+}
+
+tasks.register("clean", Delete::class.java) {
+    delete(rootProject.buildDir)
+}
+
+tasks.wrapper {
+    distributionType = Wrapper.DistributionType.ALL
 }
