@@ -101,11 +101,21 @@ First, this will run all benchmark tests on Firebase test lab, and it will downl
 This JSON file will be analysed next to compare 'No compilation median startup time' with 'baseline profile median startup time'.
 If the improvement percentage is below provided `tolerancePercentage` then gradle task will fail.
 
-For example, if no compilation median startup is 203 ms and baseline profile median startup
-is 180 ms then startup time is improved by ~11%. If the provided tolerance percentage is 
+For example, if no compilation median startup is 233 ms and baseline profile median startup
+is 206 ms then startup time is improved by ~11%. If the provided tolerance percentage is 
 10 then task will successfully complete. 
 
 Task will also print improvement percentage, no compilation startup time median, and baseline profile startup time median.
+
+```shell
+> Task :sample:runBenchmarkAndVerifyProfile
+No compilation median : 233.609398
+Baseline profile median : 206.635229
+Improvement percentage : 11.546700
+
+BUILD SUCCESSFUL in 2m 35s
+9 actionable tasks: 3 executed, 6 up-to-date
+```
 
 > Note : One important requirement for benchmark result JSON parsing to work properly 
 > is to have 'NoCompilation' in the test name targeting no compilation mode, and 'BaselineProfile' in the test name targeting baseline profile mode.
