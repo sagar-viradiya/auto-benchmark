@@ -12,7 +12,7 @@ For more information on benchmarking baseline profile visit official [Android gu
 Apply plugin to app module `build.gradle.kts` file.
 ```kotlin
 plugins {
-  id("io.github.sagar.autobenchmark") version "1.0.0.alpha01"
+  id("io.github.sagar-viradiya.autobenchmark") version "1.0.0.alpha01"
 }
 ```
 
@@ -27,14 +27,14 @@ buildscript {
     }
   }
   dependencies {
-    classpath("io.github.sagar.autobenchmark:gradle-plugin:1.0.0.alpha01")
+    classpath("io.github.sagar-viradiya:autobenchmark:1.0.0.alpha01")
   }
 }
 ```
 And then apply plugin to app module `build.gradle.kts` file.
 
 ```kotlin
-apply(plugin = "io.github.sagar.autobenchmark")
+apply(plugin = "io.github.sagar-viradiya.autobenchmark")
 ```
 
 ## ⚙️ Configuring plugin
