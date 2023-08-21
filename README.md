@@ -4,6 +4,8 @@ A Gradle plugin to automate macro-benchmark on baseline profile.
 Run your macro-benchmark tests for profile verification on Firbase test lab and verify benchmark result JSON.
 With this plugin it is possible to integrate baseline profile verification in your CI pipeline to fully automate baseline profile. 
 
+For generating profile you can leverage the official [baseline profile gradle plugin](https://developer.android.com/topic/performance/baselineprofiles/create-baselineprofile#baseline-profile-gradle-plugin). This plugin closes the loop of automating baseline profile end to end by providing automation on profile verification.
+
 For more information on benchmarking baseline profile visit official [Android guide](https://developer.android.com/topic/performance/baselineprofiles/measure-baselineprofile).
 
 ## Applying plugin
