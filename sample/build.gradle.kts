@@ -30,7 +30,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("androidx.baselineprofile")
-    id("io.github.sagar.autobenchmark")
+    id("io.github.sagar-viradiya.autobenchmark")
 }
 
 val properties = Properties().apply { load(project.rootProject.file("local.properties").inputStream()) }
