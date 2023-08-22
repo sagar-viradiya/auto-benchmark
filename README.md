@@ -1,4 +1,5 @@
 # Autobenchmark
+[![Gradle Plugin](https://img.shields.io/gradle-plugin-portal/v/io.github.sagar-viradiya.autobenchmark?color=%233cafc6&label=Plugin&logo=gradle&style=flat-square)](https://plugins.gradle.org/plugin/io.github.sagar-viradiya.autobenchmark)
 
 A Gradle plugin to automate macro-benchmark on baseline profile. 
 Run your macro-benchmark tests for profile verification on Firbase test lab and verify benchmark result JSON.
@@ -46,9 +47,9 @@ Following are the mandatory parameters that you need to configure.
 
 ```kotlin
 autoBenchmark {
-    // A file path to app apk with baseline profile
+    // A relative file path from the root to app apk with baseline profile
     appApkFilePath.set("/sample/build/outputs/apk/benchmark/sample-benchmark.apk")
-    // A file path to benchmark apk
+    // A relative file path from the root to benchmark apk
     benchmarkApkFilePath.set("/benchmark/build/outputs/apk/benchmark/benchmark-benchmark.apk")
     // Firebase project ID to access firebase test lab
     firebaseProjectId.set("firebaseProjectId")
