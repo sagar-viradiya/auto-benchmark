@@ -29,8 +29,10 @@ jobs:
         run: ./gradlew :sample:assembleBenchmark
 
       - name: Authenticate GCloud
-        run: | 
+        run: |
+          GCLOUD_DIR="$HOME/.config/gcloud/"
           mkdir -p "$HOME/.config/gcloud/"
+          echo "${{ env.GCLOUD_KEY }}" | base64 --decode > "$GCLOUD_DIR/application_default_credentials.json"
 
       - name: Verify baseline profile
         run: ./gradlew :sample:runBenchmarkAndVerifyProfile
