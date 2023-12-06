@@ -1,11 +1,13 @@
 name: Verify Baseline Profile
 
 on:
-  push
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
 
 jobs:
   build-benchmark-apks:
-    name: Build Benchmark and App APKs
+    name: Build APKs and Run profile verification
     runs-on: macos-latest
     timeout-minutes: 20
 
