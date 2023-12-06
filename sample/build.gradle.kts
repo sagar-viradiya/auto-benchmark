@@ -24,16 +24,12 @@
 
 @file:Suppress("UnstableApiUsage")
 
-import java.util.Properties
-
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("androidx.baselineprofile")
     id("io.github.sagar-viradiya.autobenchmark")
 }
-
-val properties = Properties().apply { load(project.rootProject.file("local.properties").inputStream()) }
 
 android {
     namespace = "io.github.sagar.auto_benchmark"
@@ -98,7 +94,7 @@ dependencies {
 autoBenchmark {
     appApkFilePath.set("/sample/build/outputs/apk/benchmark/sample-benchmark.apk")
     benchmarkApkFilePath.set("/benchmark/build/outputs/apk/benchmark/benchmark-benchmark.apk")
-    firebaseProjectId.set(properties.getProperty("firebaseProjectId"))
+    serviceAccountJsonFilePath.set("../../../../.config/gcloud/")
     physicalDevices.set(mapOf(
         "model" to "redfin", "version" to "30"
     ))
