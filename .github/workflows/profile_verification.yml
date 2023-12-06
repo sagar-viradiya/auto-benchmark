@@ -30,6 +30,7 @@ jobs:
 
       - name: Authenticate GCloud
         run: |
+          echo $HOME
           GCLOUD_DIR="$HOME/.config/gcloud/"
           mkdir -p "$HOME/.config/gcloud/"
           echo "${{ vars.GCLOUD_KEY }}" | base64 --decode > "$GCLOUD_DIR/application_default_credentials.json"
