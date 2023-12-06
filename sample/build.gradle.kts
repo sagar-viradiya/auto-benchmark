@@ -94,7 +94,7 @@ dependencies {
 autoBenchmark {
     appApkFilePath.set("/sample/build/outputs/apk/benchmark/sample-benchmark.apk")
     benchmarkApkFilePath.set("/benchmark/build/outputs/apk/benchmark/benchmark-benchmark.apk")
-    serviceAccountJsonFilePath.set("../../.config/gcloud/application_default_credentials.json")
+    serviceAccountJsonFilePath.set("../../../../.config/gcloud/application_default_credentials.json")
     physicalDevices.set(mapOf(
         "model" to "redfin", "version" to "30"
     ))
