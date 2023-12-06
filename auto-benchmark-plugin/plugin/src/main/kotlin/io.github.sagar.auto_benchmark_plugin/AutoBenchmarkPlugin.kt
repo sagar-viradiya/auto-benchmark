@@ -28,6 +28,7 @@ import com.android.build.api.variant.AndroidComponentsExtension
 import com.osacky.flank.gradle.FlankGradleExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import java.io.File
 
 class AutoBenchmarkPlugin : Plugin<Project> {
     companion object {
@@ -80,7 +81,7 @@ class AutoBenchmarkPlugin : Plugin<Project> {
                             extension.physicalDevices.get()
                         )
                     )
-                    projectId.set(extension.firebaseProjectId.get())
+                    serviceAccountCredentials.set(File(extension.serviceAccountJsonFilePath.get()))
                 }
 
                 apply {
