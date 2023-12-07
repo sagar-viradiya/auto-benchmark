@@ -28,7 +28,6 @@ import org.gradle.api.Project
 import org.gradle.api.provider.MapProperty
 import org.gradle.api.provider.Property
 import org.gradle.kotlin.dsl.create
-import org.gradle.kotlin.dsl.getByType
 
 interface AutoBenchmarkExtension {
 
@@ -43,9 +42,9 @@ interface AutoBenchmarkExtension {
     val benchmarkApkFilePath: Property<String>
 
     /**
-     * Firebase project ID to access firebase test lab
+     * Service account JSON file path to authenticate GCloud
      */
-    val firebaseProjectId: Property<String>
+    val serviceAccountJsonFilePath: Property<String>
 
     /**
      * Physical device configuration map to run benchmark

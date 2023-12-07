@@ -1,0 +1,40 @@
+name: Verify Baseline Profile
+
+on:
+  pull_request:
+    branches:
+      - release
+
+jobs:
+  build-benchmark-apks:
+    name: Build APKs and Run profile verification
+    runs-on: macos-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Validate Gradle Wrapper
+        uses: gradle/wrapper-validation-action@v1
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: 17
+
+      - name: Build benchmark apk
+        run: ./gradlew :benchmark:assembleBenchmark
+
+      - name: Build app apk
+        run: ./gradlew :sample:assembleBenchmark
+
+      - name: Setup GCloud Credentials for Flank
+        run: |
+          GCLOUD_DIR="$HOME/.config/gcloud/"
+          mkdir -p "$GCLOUD_DIR"
+          echo "${{ vars.GCLOUD_KEY }}" | base64 --decode > "$GCLOUD_DIR/application_default_credentials.json"
+
+      - name: Verify baseline profile
+        run: ./gradlew :sample:runBenchmarkAndVerifyProfile
