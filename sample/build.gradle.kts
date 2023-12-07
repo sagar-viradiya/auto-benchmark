@@ -98,5 +98,5 @@ autoBenchmark {
     physicalDevices.set(mapOf(
         "model" to "redfin", "version" to "30"
     ))
-    tolerancePercentage.set(10f)
+    tolerancePercentage.set(5f)
 }

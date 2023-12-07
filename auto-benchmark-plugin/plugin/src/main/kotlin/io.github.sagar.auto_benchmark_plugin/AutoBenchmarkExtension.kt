@@ -42,7 +42,7 @@ interface AutoBenchmarkExtension {
     val benchmarkApkFilePath: Property<String>
 
     /**
-     * Service account JSON file to authenticate GCloud
+     * Service account JSON file path to authenticate GCloud
      */
     val serviceAccountJsonFilePath: Property<String>
 
