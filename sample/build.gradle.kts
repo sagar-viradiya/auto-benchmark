@@ -33,12 +33,12 @@ plugins {
 
 android {
     namespace = "io.github.sagar.auto_benchmark"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "io.github.sagar.auto_benchmark"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -94,9 +94,9 @@ dependencies {
 autoBenchmark {
     appApkFilePath.set("/sample/build/outputs/apk/benchmark/sample-benchmark.apk")
     benchmarkApkFilePath.set("/benchmark/build/outputs/apk/benchmark/benchmark-benchmark.apk")
-    serviceAccountJsonFilePath.set("../../../../.config/gcloud/")
+    serviceAccountJsonFilePath.set("../../../../.config/gcloud/application_default_credentials.json")
     physicalDevices.set(mapOf(
         "model" to "redfin", "version" to "30"
     ))
-    tolerancePercentage.set(10f)
+    tolerancePercentage.set(5f)
 }

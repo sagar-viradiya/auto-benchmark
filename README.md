@@ -15,7 +15,7 @@ For more information on benchmarking baseline profile visit official [Android gu
 Apply plugin to app module `build.gradle.kts` file.
 ```kotlin
 plugins {
-  id("io.github.sagar-viradiya.autobenchmark") version "1.0.0.alpha01"
+  id("io.github.sagar-viradiya.autobenchmark") version "1.0.0.alpha02"
 }
 ```
 
@@ -30,7 +30,7 @@ buildscript {
     }
   }
   dependencies {
-    classpath("io.github.sagar-viradiya:autobenchmark:1.0.0.alpha01")
+    classpath("io.github.sagar-viradiya:autobenchmark:1.0.0.alpha02")
   }
 }
 ```
@@ -51,8 +51,8 @@ autoBenchmark {
     appApkFilePath.set("/sample/build/outputs/apk/benchmark/sample-benchmark.apk")
     // A relative file path from the root to benchmark apk
     benchmarkApkFilePath.set("/benchmark/build/outputs/apk/benchmark/benchmark-benchmark.apk")
-    // Firebase project ID to access firebase test lab
-    firebaseProjectId.set("firebaseProjectId")
+    // Service account JSON file path to authenticate GCloud
+    serviceAccountJsonFilePath.set("../../.config/gcloud/application_default_credentials.json")
     // Physical device configuration map to run benchmark
     physicalDevices.set(mapOf(
         "model" to "redfin", "version" to "30"
@@ -64,7 +64,7 @@ autoBenchmark {
 
 ### 🔐 Authenticate G-Cloud to run tests on Firebase test lab
 
-To run tests on Firebase test lab you need to authenticate to G-Cloud.
+To run tests on Firebase test lab and download JSON result of profile verification, you need to authenticate to G-Cloud.
 
 #### Authenticating on local machine
 
@@ -76,19 +76,20 @@ This will store credentials in ~/.flank directory
 #### Authenticating on CI
 
 You will need service account JSON file to setup authentication on CI. Follow the [test lab docs](https://firebase.google.com/docs/test-lab/android/continuous) to create a service account.
-Base64 encode this file on CI as GCLOUD_KEY using shell script. 
+Base64 encode this file on your local machine and set this as environment variable on CI as GCLOUD_KEY. 
 
 ```shell
 base64 -i "$HOME/.config/gcloud/application_default_credentials.json" | pbcopy
 ```
 
-Then in CI decode the JSON.
+Then on CI decode the JSON.
 
 ```shell
 GCLOUD_DIR="$HOME/.config/gcloud/"
 mkdir -p "$GCLOUD_DIR"
 echo "$GCLOUD_KEY" | base64 --decode > "$GCLOUD_DIR/application_default_credentials.json"
 ```
+Please refer to GitHub action setup to know how this is being done.
 
 For more info refer [this](https://flank.github.io/flank/#authenticate-with-a-service-account) flank guide for authentication as this plugin internally uses Fladle and Flank
 
@@ -137,10 +138,9 @@ Run following commands to build apks
 ./gradlew :benchmark:assembleBenchmark
 ```
 
-You will need your firebase test lab project ID in local.properties file. Also, you need to authenticate 
-G-cloud to run tests on Firebase test lab.
+Also make sure to have service account JSON file in the configured path (`serviceAccountJsonFilePath`)
 
-Sample CI setup using github action is coming soon!
+For verifying profile on CI, please refer to GitHub action setup.
 
 ## Contribution
 Unfortunately it is not ready to accept any contribution
