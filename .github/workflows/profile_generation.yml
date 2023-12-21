@@ -24,8 +24,10 @@ jobs:
           distribution: 'zulu'
           java-version: 17
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
       - name: Generate profile
-        run: ./gradlew sample:generateBaselineProfile
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 31
+          arch: x86_64
+          profile: Pixel 6
+          script: ./gradlew :baseline-profile:connectedAndroidTest
