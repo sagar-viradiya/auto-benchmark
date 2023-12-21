@@ -32,7 +32,7 @@ plugins {
 
 android {
     namespace = "io.github.sagar.baseline_profile"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 24
