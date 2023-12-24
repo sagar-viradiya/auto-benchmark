@@ -29,5 +29,4 @@ jobs:
         with:
           api-level: 31
           arch: x86_64
-          profile: Pixel 6
-          script: ./gradlew :baseline-profile:connectedAndroidTest
+          script: ./gradlew :sample:generateBaselineProfile

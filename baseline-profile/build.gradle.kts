@@ -41,7 +41,7 @@ android {
 
     targetProjectPath = ":sample"
 
-    testOptions {
+    /*testOptions {
         managedDevices {
             devices {
                 create ("pixel6Api31", ManagedVirtualDevice::class) {
@@ -51,7 +51,7 @@ android {
                 }
             }
         }
-    }
+    }*/
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -70,7 +70,7 @@ dependencies {
 }
 
 
-baselineProfile {
+/*baselineProfile {
     managedDevices += "pixel6Api31"
     useConnectedDevices = false
-}
+}*/
