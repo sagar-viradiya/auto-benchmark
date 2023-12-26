@@ -41,18 +41,6 @@ android {
 
     targetProjectPath = ":sample"
 
-    /*testOptions {
-        managedDevices {
-            devices {
-                create ("pixel6Api31", ManagedVirtualDevice::class) {
-                    device = "Pixel 6"
-                    apiLevel = 31
-                    systemImageSource = "aosp"
-                }
-            }
-        }
-    }*/
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -68,9 +56,3 @@ dependencies {
     implementation("androidx.test.uiautomator:uiautomator:2.2.0")
     implementation("androidx.benchmark:benchmark-macro-junit4:1.2.0")
 }
-
-
-/*baselineProfile {
-    managedDevices += "pixel6Api31"
-    useConnectedDevices = false
-}*/
