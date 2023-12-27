@@ -32,7 +32,7 @@ plugins {
 
 android {
     namespace = "io.github.sagar.baseline_profile"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 24
@@ -40,18 +40,6 @@ android {
     }
 
     targetProjectPath = ":sample"
-
-    testOptions {
-        managedDevices {
-            devices {
-                create ("pixel6Api31", ManagedVirtualDevice::class) {
-                    device = "Pixel 6"
-                    apiLevel = 31
-                    systemImageSource = "aosp"
-                }
-            }
-        }
-    }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -67,10 +55,4 @@ dependencies {
     implementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation("androidx.test.uiautomator:uiautomator:2.2.0")
     implementation("androidx.benchmark:benchmark-macro-junit4:1.2.0")
-}
-
-
-baselineProfile {
-    managedDevices += "pixel6Api31"
-    useConnectedDevices = false
 }

@@ -1,0 +1,32 @@
+name: Generate Baseline Profile
+
+on:
+  pull_request:
+    branches-ignore:
+      - release
+
+jobs:
+  build-benchmark-apks:
+    name: Generate baseline profile
+    runs-on: macos-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Validate Gradle Wrapper
+        uses: gradle/wrapper-validation-action@v1
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: 17
+
+      - name: Generate profile
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 31
+          arch: x86_64
+          script: ./gradlew :sample:generateBaselineProfile
