@@ -24,9 +24,12 @@ jobs:
           distribution: 'zulu'
           java-version: 17
 
+      - name: Install GMD image for baseline profile generation
+        run: yes | "$ANDROID_HOME"/cmdline-tools/latest/bin/sdkmanager "system-images;android-33;aosp_atd;x86_64"
+
+      - name: Accept Android licenses
+        run: yes | "$ANDROID_HOME"/cmdline-tools/latest/bin/sdkmanager --licenses || true
+
       - name: Generate profile
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 31
-          arch: x86_64
-          script: ./gradlew :sample:generateBaselineProfile
+        run: ./gradlew :sample:generateBaselineProfile
+             -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect"
