@@ -48,6 +48,14 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
+    testOptions.managedDevices.devices {
+        create<ManagedVirtualDevice>("pixel6Api33") {
+            device = "Pixel 6"
+            apiLevel = 33
+            systemImageSource = "aosp"
+        }
+    }
 }
 
 dependencies {
@@ -55,4 +63,9 @@ dependencies {
     implementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation("androidx.test.uiautomator:uiautomator:2.2.0")
     implementation("androidx.benchmark:benchmark-macro-junit4:1.2.0")
+}
+
+baselineProfile {
+    managedDevices += "pixel6Api33"
+    useConnectedDevices = false
 }
