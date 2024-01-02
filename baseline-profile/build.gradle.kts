@@ -49,11 +49,15 @@ android {
         jvmTarget = "11"
     }
 
-    testOptions.managedDevices.devices {
-        create<ManagedVirtualDevice>("pixel6Api33") {
-            device = "Pixel 6"
-            apiLevel = 33
-            systemImageSource = "aosp"
+    testOptions {
+        managedDevices {
+            devices {
+                create ("pixel6Api33", ManagedVirtualDevice::class) {
+                    device = "Pixel 6"
+                    apiLevel = 33
+                    systemImageSource = "aosp"
+                }
+            }
         }
     }
 }
