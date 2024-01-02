@@ -32,3 +32,4 @@ jobs:
 
       - name: Generate profile
         run: ./gradlew :sample:generateBaselineProfile
+             -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect"
