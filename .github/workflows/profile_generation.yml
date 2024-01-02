@@ -25,8 +25,4 @@ jobs:
           java-version: 17
 
       - name: Generate profile
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 31
-          arch: x86_64
-          script: ./gradlew :sample:generateBaselineProfile
+        run: ./gradlew :sample:generateBaselineProfile
