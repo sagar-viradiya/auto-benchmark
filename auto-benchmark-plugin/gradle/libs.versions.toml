@@ -1,0 +1,19 @@
+# Version Catalog for included build: auto-benchmark-plugin
+
+[versions]
+kotlin = "2.2.20"
+pluginPublish = "2.0.0"
+agp = "8.12.3"
+fladle = "0.19.0"
+junitBom = "6.0.0"
+
+[libraries]
+android-gradle = { module = "com.android.tools.build:gradle", version.ref = "agp" }
+kotlin-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+fladle = { module = "com.osacky.flank.gradle:fladle", version.ref = "fladle" }
+junit-bom = { module = "org.junit:junit-bom", version.ref = "junitBom" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter" }
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+gradle-plugin-publish = { id = "com.gradle.plugin-publish", version.ref = "pluginPublish" }

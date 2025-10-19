@@ -23,8 +23,8 @@
  */
 
 plugins {
-    id("org.jetbrains.kotlin.jvm") version "1.8.10" apply false
-    id("com.gradle.plugin-publish") version "1.1.0" apply false
+    alias(libs.plugins.kotlin.jvm) apply false
+    alias(libs.plugins.gradle.plugin.publish) apply false
 }
 
 allprojects {

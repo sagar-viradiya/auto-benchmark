@@ -25,14 +25,14 @@
 import com.android.build.api.dsl.ManagedVirtualDevice
 
 plugins {
-    id("com.android.test")
-    id("androidx.baselineprofile")
-    id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.android.test)
+    alias(libs.plugins.androidx.baselineprofile)
+    alias(libs.plugins.kotlin.android)
 }
 
 android {
     namespace = "io.github.sagar.baseline_profile"
-    compileSdk = 34
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 24
@@ -42,19 +42,19 @@ android {
     targetProjectPath = ":sample"
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "21"
     }
 
     testOptions {
         managedDevices {
-            devices {
-                create ("pixel6Api33", ManagedVirtualDevice::class) {
+            allDevices {
+                create ("pixel6Api34", ManagedVirtualDevice::class) {
                     device = "Pixel 6"
-                    apiLevel = 33
+                    apiLevel = 34
                     systemImageSource = "aosp"
                 }
             }
@@ -63,13 +63,13 @@ android {
 }
 
 dependencies {
-    implementation("androidx.test.ext:junit:1.1.5")
-    implementation("androidx.test.espresso:espresso-core:3.5.1")
-    implementation("androidx.test.uiautomator:uiautomator:2.2.0")
-    implementation("androidx.benchmark:benchmark-macro-junit4:1.2.0")
+    implementation(libs.androidx.test.ext.junit)
+    implementation(libs.androidx.test.espresso.core)
+    implementation(libs.androidx.test.uiautomator)
+    implementation(libs.androidx.benchmark.macro.junit4)
 }
 
 baselineProfile {
-    managedDevices += "pixel6Api33"
+    managedDevices += "pixel6Api34"
     useConnectedDevices = false
 }

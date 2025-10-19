@@ -27,30 +27,30 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.jetbrains.kotlin.jvm")
+    alias(libs.plugins.kotlin.jvm)
     `kotlin-dsl`
     `java-gradle-plugin`
-    id("com.gradle.plugin-publish")
+    alias(libs.plugins.gradle.plugin.publish)
 }
 
 dependencies {
     compileOnly(gradleApi())
     compileOnly(kotlin("stdlib"))
-    compileOnly("com.android.tools.build:gradle:8.0.0")
-    compileOnly("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.10")
-    implementation("com.osacky.flank.gradle:fladle:0.17.4")
-    testImplementation(platform("org.junit:junit-bom:5.9.1"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
+    compileOnly(libs.android.gradle)
+    compileOnly(libs.kotlin.gradle)
+    implementation(libs.fladle)
+    testImplementation(platform(libs.junit.bom))
+    testImplementation(libs.junit.jupiter)
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
 }
 
 tasks.withType<KotlinCompile> {
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+        jvmTarget = JavaVersion.VERSION_21.toString()
     }
 }
 
