@@ -45,7 +45,7 @@ abstract class BenchmarkJsonParserTask : DefaultTask() {
     @TaskAction
     @Suppress("UNCHECKED_CAST")
     fun execute() {
-        val jsonFile = buildDirectory.dir("fladle/benchmark_result").get().asFileTree.filter { file ->
+        val jsonFile = buildDirectory.get().asFileTree.filter { file ->
             file.name.contains("benchmarkData")
         }.singleFile
         val json: Map<String, Any> = JsonSlurper().parse(jsonFile) as Map<String, Any>
