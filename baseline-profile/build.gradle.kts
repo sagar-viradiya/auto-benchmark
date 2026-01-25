@@ -32,7 +32,7 @@ plugins {
 
 android {
     namespace = "io.github.sagar.baseline_profile"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 24
@@ -63,10 +63,10 @@ android {
 }
 
 dependencies {
-    implementation("androidx.test.ext:junit:1.1.5")
-    implementation("androidx.test.espresso:espresso-core:3.5.1")
-    implementation("androidx.test.uiautomator:uiautomator:2.2.0")
-    implementation("androidx.benchmark:benchmark-macro-junit4:1.2.0")
+    implementation("androidx.test.ext:junit:1.2.1")
+    implementation("androidx.test.espresso:espresso-core:3.6.1")
+    implementation("androidx.test.uiautomator:uiautomator:2.3.0")
+    implementation("androidx.benchmark:benchmark-macro-junit4:1.3.3")
 }
 
 baselineProfile {
